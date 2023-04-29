@@ -26,4 +26,21 @@ export class TurmaController {
       data: turma as any
     })
   }
+
+  async delete(req: Request, res: Response) {
+    try {
+      const rawTurmaId: string = req.params.turmaId
+      const turmaId = Number(rawTurmaId)
+
+      await prisma.turma.delete({
+        where: {
+          id: turmaId
+        }
+      })
+
+      res.json({ message: "Turma deletada." })
+    } catch (error) {
+      res.status(400).json({ error: "Ocorreu um erro ao tentar deletar a turma." })
+    }
+  }
 } 
