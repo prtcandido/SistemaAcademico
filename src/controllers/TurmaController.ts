@@ -27,6 +27,31 @@ export class TurmaController {
     })
   }
 
+  async update(req: Request, res: Response) {
+    try {
+      const alunoAlterado = await prisma.turma.update({
+        where:{id: Number(req.params.id)},
+        data: req.body,
+        select: {
+          id:true,
+          cursoId:true,
+          alunoTurma:true,
+          salaAulaId:true,
+          salaAula:true,
+          professorId:true,
+          professor:true,
+          disciplinaId:true,
+          semestreId:true,
+          semestre:true,
+          aula:true,
+          prova:true,
+        }
+      });
+    } catch (error) {
+      res.status(400).json({error: "Ocorreu um erro ao tentar atualizar a turma."})
+    }
+  }
+ 
   async delete(req: Request, res: Response) {
     try {
       const rawTurmaId: string = req.params.turmaId
