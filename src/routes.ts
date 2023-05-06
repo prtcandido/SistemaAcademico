@@ -6,6 +6,7 @@ import TesteController from './controllers/TesteController';
 import ProdutoController from './controllers/ProdutoController'; 
 // Validação dos parâmetos da rota 
 import ValidaTeste1 from './middlewares/ValidaTeste1';
+import { TurmaController } from './controllers/TurmaController';
 // Instancia roteador 
 const Roteador = Router(); 
 // Define rota tipo get que, para funcionar, deve ser requisitada conforme exemplo. 
@@ -23,5 +24,11 @@ Roteador.get('/produtos/:id', new ProdutoController().show);
 Roteador.post('/produtos', new ProdutoController().store); 
 Roteador.put('/produtos/:id', new ProdutoController().update); 
 Roteador.delete('/produtos/:id', new ProdutoController().delete);
+
+Roteador.post('/turma/', new TurmaController().create);
+Roteador.put('/turma/:id', new TurmaController().update);
+Roteador.delete('/turma/:id', new TurmaController().delete);
+Roteador.delete('/turma/desatribuirAluno/:id', new TurmaController().removerAluno);
+Roteador.post('/turma/atribuirAluno/:id', new TurmaController().atribuirAluno);
 
 export default Roteador;
