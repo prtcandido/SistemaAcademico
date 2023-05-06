@@ -111,8 +111,8 @@ model Semestre{
 
 model ItemCalendario{
   id Int @id @default(autoincrement())
-  periodoDe DateTime @db.Date
-  periodoAte DateTime @db.Date
+  periodoDe DateTime @db.Date()
+  periodoAte DateTime @db.Date()
   descricao String @db.VarChar(100)
   haveraAula Boolean
   semestreId Int
