@@ -6,6 +6,9 @@ import TesteController from './controllers/TesteController';
 import ProdutoController from './controllers/ProdutoController'; 
 // Validação dos parâmetos da rota 
 import ValidaTeste1 from './middlewares/ValidaTeste1';
+import NotaController from './controllers/NotaController';
+import ValidaNota from './middlewares/ValidaNota';
+
 // Instancia roteador 
 const Roteador = Router(); 
 // Define rota tipo get que, para funcionar, deve ser requisitada conforme exemplo. 
@@ -23,5 +26,16 @@ Roteador.get('/produtos/:id', new ProdutoController().show);
 Roteador.post('/produtos', new ProdutoController().store); 
 Roteador.put('/produtos/:id', new ProdutoController().update); 
 Roteador.delete('/produtos/:id', new ProdutoController().delete);
+
+// Rotas '/notas'
+Roteador.get('/notas', new NotaController().index);
+Roteador.get('/notas/prova/:id', ValidaNota, new NotaController().getNotasByProvaId);
+Roteador.get('/notas/aluno/:id', ValidaNota, new NotaController().getNotasByAlunoId);
+Roteador.get('/notas/:id', ValidaNota, new NotaController().show);
+
+Roteador.post('/notas', new NotaController().store);
+Roteador.put('/notas/:id', ValidaNota, new NotaController().update);
+Roteador.delete('/notas/:id', ValidaNota, new NotaController().delete);
+
 
 export default Roteador;
