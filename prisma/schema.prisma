@@ -95,7 +95,7 @@ model Solicitacao{
   id Int @id @default(autoincrement())
   assunto String @db.VarChar(100)
   descricao String @db.VarChar(1000)
-  dataAbertura DateTime @default(now()) @db.Date
+  dataAbertura DateTime @default(now())
   alunoId Int
   aluno Aluno @relation(fields: [alunoId],references: [id])
 }
