@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  sistema_academico_db:
+    container_name: sistema-academico-db
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DB: ${DATABASE_NAME}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'YES'
+    ports:
+      - ${DATABASE_PORT}:3306
+
+  sistema_academico_api:
+    container_name: sistema-academico-api
+    build: .
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/home/sistema-academico
+    environment:
+      - DB_HOST=${DATABASE_HOST}
+      - DB_PORT=${DATABASE_PORT}
