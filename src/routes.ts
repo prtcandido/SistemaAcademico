@@ -4,8 +4,12 @@ import {Router} from 'express';
 import TesteController from './controllers/TesteController'; 
 // Importar ProdutoController
 import ProdutoController from './controllers/ProdutoController'; 
+import SolicitacaoController from './controllers/SolicitacaoController';
 // Validação dos parâmetos da rota 
 import ValidaTeste1 from './middlewares/ValidaTeste1';
+
+import ValidaSolicitacaoId from './middlewares/ValidaSolicitacao';
+
 // Instancia roteador 
 const Roteador = Router(); 
 // Define rota tipo get que, para funcionar, deve ser requisitada conforme exemplo. 
@@ -23,5 +27,13 @@ Roteador.get('/produtos/:id', new ProdutoController().show);
 Roteador.post('/produtos', new ProdutoController().store); 
 Roteador.put('/produtos/:id', new ProdutoController().update); 
 Roteador.delete('/produtos/:id', new ProdutoController().delete);
+
+// Solicitacao
+Roteador.get('/solicitacao/index', new SolicitacaoController().index)
+Roteador.get('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().show)
+Roteador.get('/solicitacao/{alunoId}', ValidaSolicitacaoId, new SolicitacaoController().listByAlunoId)
+Roteador.post('/solicitacao', new SolicitacaoController().store)
+Roteador.put('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().update)
+Roteador.delete('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().delete)
 
 export default Roteador;

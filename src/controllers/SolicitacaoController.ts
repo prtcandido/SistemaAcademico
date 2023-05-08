@@ -69,26 +69,26 @@ class SolicitacaoController {
     }
   }
 
-  async listByAssunto(req: Request, res: Response) {
-    try {
-      const { assunto } = req.query;
-      const solicitacoes = await prisma.solicitacao.findMany({
-        where: { assunto: { contains: assunto as string } },
-        orderBy: { dataAbertura: 'desc' },
-        select: {
-          id: true,
-          assunto: true,
-          descricao: true,
-          dataAbertura: true,
-          alunoId: true,
-          resposta: true,
-        },
-      });
-      res.status(200).json(solicitacoes);
-    } catch (error) {
-      res.status(400).json({ message: 'Erro ao listar solicitações por assunto' });
-    }
-  }
+  // async listByAssunto(req: Request, res: Response) {
+  //   try {
+  //     const { assunto } = req.query;
+  //     const solicitacoes = await prisma.solicitacao.findMany({
+  //       where: { assunto: { contains: assunto as string } },
+  //       orderBy: { dataAbertura: 'desc' },
+  //       select: {
+  //         id: true,
+  //         assunto: true,
+  //         descricao: true,
+  //         dataAbertura: true,
+  //         alunoId: true,
+  //         resposta: true,
+  //       },
+  //     });
+  //     res.status(200).json(solicitacoes);
+  //   } catch (error) {
+  //     res.status(400).json({ message: 'Erro ao listar solicitações por assunto' });
+  //   }
+  // }
 
 
   async listByAlunoId(req: Request, res: Response) {
@@ -115,7 +115,7 @@ class SolicitacaoController {
   async update(req: Request, res: Response) {
     try {
       const resposta = await prisma.solicitacao.update({
-        where: { id: number(req.params.id) },
+        where: { id: Number(req.params.id) },
         data: req.body,
         select: {
           id: true,
@@ -135,7 +135,7 @@ class SolicitacaoController {
   async delete(req: Request, res: Response) {
     try {
       await prisma.solicitacao.delete({
-        where: { id: number(req.params.id) },
+        where: { id: Number(req.params.id) },
       })
 
       res.status(200).json("Solicitação excluída")
