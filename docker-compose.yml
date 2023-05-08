@@ -10,16 +10,3 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'YES'
     ports:
       - ${DATABASE_PORT}:3306
-
-  sistema_academico_api:
-    container_name: sistema-academico-api
-    build: .
-    ports:
-      - ${PORT}:${PORT}
-    volumes:
-      - .:/home/sistema-academico
-    environment:
-      - DB_HOST=${DATABASE_HOST}
-      - DB_PORT=${DATABASE_PORT}
-    depends_on:
-      - sistema_academico_db
