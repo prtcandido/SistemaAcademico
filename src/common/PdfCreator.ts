@@ -11,9 +11,13 @@ export class PdfCreator {
       const options = {
         format: 'A3',
         orientation: 'portrait',
-        border: '10mm',
+        border: '15mm',
+        header: {
+          height: '10',
+          contents: '<div style="text-align: center;"></div>',
+        },
         footer: {
-          height: '28mm',
+          height: '15mm',
           contents: {
             default:
               '<div style="text-align: right;"><span style="color: #444;">{{page}}</span>/<span>{{pages}}</span></div>',
