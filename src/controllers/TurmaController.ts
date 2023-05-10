@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { Aula, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { PdfCreator } from '../common/PdfCreator';
-import { S3ClientService } from '../common/S3Client';
+import { FirebaseClient } from '../common/FirebaseClient';
 
 export class TurmaController {
   async generateClassPlanningReport(req: Request, res: Response) {
     const prisma = new PrismaClient();
     const pdfCreator = new PdfCreator();
-    const s3ClientService = new S3ClientService();
+    const firebaseClient = new FirebaseClient();
 
     const { id } = req.params;
 
@@ -30,20 +30,23 @@ export class TurmaController {
       });
     }
 
-    const pdf = await pdfCreator.create({ aulas: aulas });
+    const pdf = await pdfCreator.create({ aulas: aulas, teste: 'teste' });
 
     if (pdf.length <= 0) {
       res.status(500).json({ error: true, message: 'Falha ao criar PDF' });
     }
 
-    const fileName = `planejamento-aula/${id}.pdf`;
+    const filePath = 'planejamento-aula/';
 
-    await s3ClientService.sendFile(fileName, pdf);
+    const fileName = `${id}.pdf`;
 
-    res.status(200).json({
-      success: true,
-      file: `${process.env.BUCKET_FILE_BASEURL}${fileName}${process.env.BUCKET_ACCESS_PARAMS}`,
-      ttl: 300,
-    });
+    const responseFile = await firebaseClient.sendFile(
+      filePath,
+      fileName,
+      pdf,
+      'application/pdf'
+    );
+
+    res.status(200).json(responseFile);
   }
 }
