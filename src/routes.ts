@@ -30,18 +30,10 @@ Roteador.get(    // URL com parêmetro :id
 
 // Solicitacao
 Roteador.get('/solicitacao/index', new SolicitacaoController().index)
-Roteador.get('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().show)
-Roteador.get('/solicitacao/{alunoId}', ValidaSolicitacaoId, new SolicitacaoController().listByAlunoId)
+Roteador.get('/solicitacao/:id', ValidaSolicitacaoId, new SolicitacaoController().show)
+Roteador.get('/solicitacao/list-by-aluno/:id', ValidaSolicitacaoId, new SolicitacaoController().listByAlunoId)
 Roteador.post('/solicitacao', new SolicitacaoController().store)
-Roteador.put('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().update)
-Roteador.delete('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().delete)
-
-// Solicitacao
-Roteador.get('/solicitacao/index', new SolicitacaoController().index)
-Roteador.get('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().show)
-Roteador.get('/solicitacao/{alunoId}', ValidaSolicitacaoId, new SolicitacaoController().listByAlunoId)
-Roteador.post('/solicitacao', new SolicitacaoController().store)
-Roteador.put('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().update)
-Roteador.delete('/solicitacao/{id}', ValidaSolicitacaoId, new SolicitacaoController().delete)
+Roteador.put('/solicitacao/:id', ValidaSolicitacaoId, new SolicitacaoController().update)
+Roteador.delete('/solicitacao/:id', ValidaSolicitacaoId, new SolicitacaoController().delete)
 
 export default Roteador;

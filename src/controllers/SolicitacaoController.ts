@@ -5,12 +5,16 @@ const prisma = new PrismaClient();
 
 class SolicitacaoController {
 
-
   async store(req: Request, res: Response) {
     try {
-      const data = req.body;
+      const { assunto, descricao, alunoId } = req.body;
       const novaSolicitacao = await prisma.solicitacao.create({
-        data: data,
+        data: {
+          assunto,
+          descricao,
+          alunoId: Number(alunoId),
+          dataAbertura: new Date() // Data atual
+        },
         select: {
           id: true,
           assunto: true,
@@ -74,33 +78,11 @@ class SolicitacaoController {
     }
   }
 
-  // async listByAssunto(req: Request, res: Response) {
-  //   try {
-  //     const { assunto } = req.query;
-  //     const solicitacoes = await prisma.solicitacao.findMany({
-  //       where: { assunto: { contains: assunto as string } },
-  //       orderBy: { dataAbertura: 'desc' },
-  //       select: {
-  //         id: true,
-  //         assunto: true,
-  //         descricao: true,
-  //         dataAbertura: true,
-  //         alunoId: true,
-  //         resposta: true,
-  //       },
-  //     });
-  //     res.status(200).json(solicitacoes);
-  //   } catch (error) {
-  //     res.status(400).json({ message: 'Erro ao listar solicitações por assunto' });
-  //   }
-  // }
-
-
   async listByAlunoId(req: Request, res: Response) {
     try {
-      const { alunoId } = req.query;
+      const alunoId = Number(req.params.id)
       const solicitacoes = await prisma.solicitacao.findMany({
-        where: { alunoId: Number(alunoId) },
+        where: { alunoId: alunoId },
         orderBy: { dataAbertura: 'desc' },
         select: {
           id: true,
@@ -109,6 +91,7 @@ class SolicitacaoController {
           dataAbertura: true,
           alunoId: true,
           resposta: true,
+          dataResposta: true,
         },
       });
       res.status(200).json(solicitacoes);
@@ -119,16 +102,21 @@ class SolicitacaoController {
 
   async update(req: Request, res: Response) {
     try {
+      const jsonResposta = req.body.resposta;
       const resposta = await prisma.solicitacao.update({
         where: { id: Number(req.params.id) },
-        data: req.body,
+        data: {
+          resposta: jsonResposta,
+          dataResposta: new Date()
+        },
         select: {
           id: true,
           assunto: true,
           descricao: true,
           dataAbertura: true,
           alunoId: true,
-          resposta: true
+          resposta: true,
+          dataResposta: true
         }
       })
       res.status(200).json(resposta)
