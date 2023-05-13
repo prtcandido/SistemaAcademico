@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -102,8 +102,9 @@ model Solicitacao {
   id           Int      @id @default(autoincrement())
   assunto      String   @db.VarChar(100)
   descricao    String   @db.VarChar(1000)
-  resposta     String   @db.VarChar(1000)
+  resposta     String?   @db.VarChar(1000)
   dataAbertura DateTime @default(now()) @db.Date
+  dataResposta DateTime? @default(now()) @db.Date
   alunoId      Int
   aluno        Aluno    @relation(fields: [alunoId], references: [id])
 }
