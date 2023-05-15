@@ -6,7 +6,7 @@
 
 - Isabella Aguiar
 
-- Thais Yassue.
+- Thais Yassue
 
 #### 1 - Como rodar
 
@@ -34,7 +34,8 @@
 
 - Importe a collection no Postman utilizando o arquivo **SistemaAcademico.postman_collection.json** que se encontra na raiz do projeto.
 
-- Inicialize o servidor utilizando o comando
+- Inicialize o servidor utilizando o comando:
+
   > npm run dev
 
 ##### 2 - Rotas:
