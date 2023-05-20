@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.event-custom {
+  background-color: red; /* Cor de fundo do evento */
+  color: black; /* Cor do texto do evento */
+  border-radius: 5px; /* Arredondamento das bordas do evento */
+  border: none;
+  padding: 5px; /* Espaçamento interno do evento */
+  font-weight: bold; /* Peso da fonte do evento */
+  /* Outros estilos personalizados que você desejar */
+}
+
+.event-aula {
+  background-color: green;
+  color: white;
+}
