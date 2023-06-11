@@ -4,8 +4,11 @@ import express from 'express';
 import Roteador from './routes';
 // instancia o express 
 const app = express();
+const cors = require('cors');
 // Configurar uso json
 app.use(express.json());
+// Cors
+app.use(cors());
 // Configuração de uso das rotas
 app.use(Roteador); 
 //configura porta e funçao executada na ativação 
