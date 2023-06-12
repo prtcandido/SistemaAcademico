@@ -95,7 +95,7 @@ model Solicitacao{
   id Int @id @default(autoincrement())
   assunto String @db.VarChar(100)
   descricao String @db.VarChar(1000)
-  dataAbertura DateTime @default(now()) @db.Date
+  dataAbertura DateTime @default(now()) 
   alunoId Int
   aluno Aluno @relation(fields: [alunoId],references: [id])
 }
@@ -120,7 +120,7 @@ model ItemCalendario{
   @@map("itemcalendarios")
 }
 
-model Turma{
+model Turma {
   id Int @id @default(autoincrement())
   cursoId Int
   curso Curso @relation(fields: [cursoId],references: [id])
@@ -141,9 +141,9 @@ model Turma{
 model AlunoTurma {
   id Int @id @default(autoincrement())
   turmaId Int
-  turma Turma @relation(fields: [turmaId],references: [id])
+  turma Turma @relation(fields: [turmaId],references: [id], onDelete: Cascade)
   alunoId Int
-  aluno Aluno @relation(fields: [alunoId],references: [id])
+  aluno Aluno @relation(fields: [alunoId],references: [id], onDelete: Cascade)
   chamada Chamada[]
   prova Nota[]
   @@unique([turmaId,alunoId])
@@ -156,7 +156,7 @@ model Aula {
   dataProgramada DateTime @db.Date
   tecnicaMetodologica String @db.VarChar(100)
   turmaId Int
-  turma Turma @relation(fields: [turmaId],references: [id])
+  turma Turma @relation(fields: [turmaId],references: [id], onDelete: Cascade)
   chamada Chamada[]
   @@map("aulas")
 }
@@ -167,7 +167,7 @@ model Prova {
   tipo String @db.VarChar(30) // presencial, remota, trabalho
   peso Int
   turmaId Int
-  turma Turma @relation(fields: [turmaId],references: [id])
+  turma Turma @relation(fields: [turmaId],references: [id], onDelete: Cascade)
   nota Nota[]
   @@map("provas")
 }
@@ -175,7 +175,7 @@ model Prova {
 model Chamada{
   id Int @id @default(autoincrement())
   alunoTurmaId Int
-  aulonTurma AlunoTurma @relation(fields: [alunoTurmaId],references: [id])
+  aulonTurma AlunoTurma @relation(fields: [alunoTurmaId],references: [id], onDelete: Cascade)
   aulaId Int
   aula Aula @relation(fields: [aulaId],references: [id])
   presente Boolean
@@ -185,7 +185,7 @@ model Chamada{
 model Nota{
   id Int @id @default(autoincrement())
   alunoTurmaId Int
-  alunoTurma AlunoTurma @relation(fields: [alunoTurmaId],references: [id])
+  alunoTurma AlunoTurma @relation(fields: [alunoTurmaId],references: [id], onDelete: Cascade)
   provaId Int
   prova Prova @relation(fields: [provaId],references: [id])
   nota Decimal @db.Decimal(3,1)
