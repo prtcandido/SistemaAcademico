@@ -109,7 +109,7 @@ export class TurmaController {
   }
 
   async update(req: Request, res: Response) {
-    let body, turmaId;
+    let body, turmaId: number;
 
     try {
       body = Turma
@@ -128,6 +128,18 @@ export class TurmaController {
     
     let turmaAlterada;
     try {
+      await prisma.alunoTurma.deleteMany({
+        where: { turmaId }
+      });
+
+      if (body.alunoTurma !== undefined) {
+        await prisma.alunoTurma.createMany({
+          data: body.alunoTurma.map(alunoTurma => ({ turmaId, ...alunoTurma }))
+        });
+      }
+
+      delete body.alunoTurma;
+
       turmaAlterada = await prisma.turma.update({
         where:{ id: turmaId },
         data: body as any,
@@ -144,6 +156,7 @@ export class TurmaController {
           semestre: true,
           aula: true,
           prova: true,
+          disciplina: true,
         }
       });
     } catch (error) {
@@ -182,23 +195,25 @@ export class TurmaController {
   }
 
   async atribuirAluno(req: Request, res: Response) {
-    let body;
+    let alunoId, turmaId;
 
     try {
-      body = z.array(AlunoTurma.omit({ id: true }))      
-        .parse(req.body);
+      alunoId = z.number()
+        .parse(Number(req.params.alunoId));
+      turmaId = z.number()
+        .parse(Number(req.params.turmaId));
     } catch (exception) {
       const zodException: ZodError = exception as any;
 
       return res
         .status(400)
-        .json({error: zodException.message});
+        .json({ error: zodException.message });
     }
 
     let novoAluno;
     try {
       novoAluno = await prisma.alunoTurma.createMany({
-        data: body
+        data: { alunoId, turmaId }
       });
     } catch (exception) {
       return res.status(400).json({error: "Ocorreu um erro ao tentar adicionar um aluno a turma." })
@@ -254,6 +269,7 @@ export class TurmaController {
         semestre: true,
         aula: true,
         prova: true,
+        disciplina: true,
       }
     });
 
@@ -294,7 +310,8 @@ export class TurmaController {
         semestre: true,
         aula: true,
         prova: true,
-      }
+      },
+      where: { id: turmaId }
     });
 
     if (result === null) {
