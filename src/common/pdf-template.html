@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Template de PDF</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Relatório de Planejamento de Aula</h1>
+    <h2>{{disciplina.nome}} - {{semestre.sigla}} - {{professor.nome}}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Data Programada</th>
+          <th>Metodologia</th>
+          <th>Conteúdo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each aulas}}
+        <tr>
+          <td>{{this.dataProgramada}}</td>
+          <td>{{this.tecnicaMetodologica}}</td>
+          <td>{{this.conteudoProgramatico}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </body>
+</html>

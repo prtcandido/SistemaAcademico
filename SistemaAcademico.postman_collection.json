@@ -1,0 +1,504 @@
+{
+	"info": {
+		"_postman_id": "81fc9ccc-780b-47a0-8fcb-54f032ef2591",
+		"name": "SistemaAcademico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16169331",
+		"_collection_link": "https://felipe-duaibs.postman.co/workspace/sistema-academico~918856b4-84d5-49eb-a329-376b9b06d974/collection/16169331-81fc9ccc-780b-47a0-8fcb-54f032ef2591?action=share&creator=16169331&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "Aula",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conteudoProgramatico\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.\",\r\n    \"dataProgramada\": \"24/07/2001\",\r\n    \"tecnicaMetodologica\": \"Presencial\",\r\n    \"turmaId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/aulas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"aulas"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"conteudoProgramatico\": \"Teste\",\r\n    \"dataProgramada\": \"06/06/2006\",\r\n    \"tecnicaMetodologica\": \"Teste\",\r\n    \"turmaId\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3000/aulas",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"aulas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "125"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"7d-4IrCFqlu/sFqdq3rBkRaYv6hVI0\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 08 May 2023 04:03:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3,\n    \"conteudoProgramatico\": \"Teste\",\n    \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n    \"tecnicaMetodologica\": \"Teste\",\n    \"turmaId\": 1\n}"
+								}
+							]
+						},
+						{
+							"name": "index",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/aulas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"aulas"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/aulas",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"aulas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "424"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1a8-oRgcLr17Fhc3Z57MmOYv2sMtPRs\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 08 May 2023 04:06:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 2,\n        \"conteudoProgramatico\": \"Aula Conteúdo Programático\",\n        \"dataProgramada\": \"2023-01-01T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Aula Técnica Metodológica\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 3,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 4,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/aulas/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"aulas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/aulas",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"aulas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "424"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1a8-oRgcLr17Fhc3Z57MmOYv2sMtPRs\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 08 May 2023 04:06:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 2,\n        \"conteudoProgramatico\": \"Aula Conteúdo Programático\",\n        \"dataProgramada\": \"2023-01-01T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Aula Técnica Metodológica\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 3,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 4,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conteudoProgramatico\": \"Teste\",\r\n    \"dataProgramada\": \"06/06/2006\",\r\n    \"tecnicaMetodologica\": \"Teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/aulas/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"aulas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/aulas",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"aulas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "424"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1a8-oRgcLr17Fhc3Z57MmOYv2sMtPRs\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 08 May 2023 04:06:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 2,\n        \"conteudoProgramatico\": \"Aula Conteúdo Programático\",\n        \"dataProgramada\": \"2023-01-01T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Aula Técnica Metodológica\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 3,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 4,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/aulas/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"aulas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/aulas",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"aulas"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "424"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1a8-oRgcLr17Fhc3Z57MmOYv2sMtPRs\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 08 May 2023 04:06:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 2,\n        \"conteudoProgramatico\": \"Aula Conteúdo Programático\",\n        \"dataProgramada\": \"2023-01-01T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Aula Técnica Metodológica\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 3,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    },\n    {\n        \"id\": 4,\n        \"conteudoProgramatico\": \"Teste\",\n        \"dataProgramada\": \"2006-06-06T00:00:00.000Z\",\n        \"tecnicaMetodologica\": \"Teste\",\n        \"turmaId\": 1\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Turma",
+					"item": [
+						{
+							"name": "class-planning-report",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/turmas/:id/class-planning-report",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"turmas",
+										":id",
+										"class-planning-report"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-turmas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/turmas/:id/aulas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"turmas",
+										":id",
+										"aulas"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Health",
+					"item": [
+						{
+							"name": "index",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/health",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"health"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
