@@ -1,17 +1,47 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
+import prismaClient from '../common/PrismaClient';
 import { PdfCreator } from '../common/PdfCreator';
 import { FirebaseClient } from '../common/FirebaseClient';
 
 export class TurmaController {
+  async getClasses(req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+      const aulas = await prismaClient.aula.findMany({
+        select: {
+          id: true,
+          dataProgramada: true,
+          tecnicaMetodologica: true,
+          conteudoProgramatico: true,
+        },
+        where: {
+          turmaId: Number(id),
+        },
+        orderBy: { id: 'asc' },
+      });
+
+      if (aulas.length <= 0) {
+        res.status(404).json({
+          error: true,
+          message: 'Não há nenhuma aula para esta turma',
+        });
+      }
+
+      res.status(200).json(aulas);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json(error);
+    }
+  }
+
   async generateClassPlanningReport(req: Request, res: Response) {
-    const prisma = new PrismaClient();
     const pdfCreator = new PdfCreator();
     const firebaseClient = new FirebaseClient();
 
     const { id } = req.params;
 
-    const aulas = await prisma.aula.findMany({
+    const aulas = await prismaClient.aula.findMany({
       select: {
         dataProgramada: true,
         tecnicaMetodologica: true,
@@ -23,7 +53,7 @@ export class TurmaController {
       orderBy: { dataProgramada: 'asc' },
     });
 
-    const turma = await prisma.turma.findUnique({
+    const turma = await prismaClient.turma.findUnique({
       select: {
         professorId: true,
         semestreId: true,
@@ -41,7 +71,7 @@ export class TurmaController {
       });
     }
 
-    const professor = await prisma.professor.findUnique({
+    const professor = await prismaClient.professor.findUnique({
       select: {
         nome: true,
       },
@@ -50,7 +80,7 @@ export class TurmaController {
       },
     });
 
-    const semestre = await prisma.semestre.findUnique({
+    const semestre = await prismaClient.semestre.findUnique({
       select: {
         sigla: true,
       },
@@ -59,7 +89,7 @@ export class TurmaController {
       },
     });
 
-    const disciplina = await prisma.disciplina.findUnique({
+    const disciplina = await prismaClient.disciplina.findUnique({
       select: {
         nome: true,
       },

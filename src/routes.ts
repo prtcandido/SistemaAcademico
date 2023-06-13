@@ -13,9 +13,10 @@ Roteador.put('/aulas/:id', new AulaController().update);
 Roteador.delete('/aulas/:id', new AulaController().delete);
 
 Roteador.get(
-  '/turma/:id/class-planning-report',
+  '/turmas/:id/class-planning-report',
   new TurmaController().generateClassPlanningReport
 );
+Roteador.get('/turmas/:id/aulas', new TurmaController().getClasses);
 
 Roteador.get('/health', new HealthController().index);
 
