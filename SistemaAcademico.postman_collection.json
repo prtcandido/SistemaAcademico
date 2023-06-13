@@ -20,7 +20,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"conteudoProgramatico\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.\",\r\n    \"dataProgramada\": \"09/05/2023\",\r\n    \"tecnicaMetodologica\": \"Presencial\",\r\n    \"turmaId\": 1\r\n}",
+									"raw": "{\r\n    \"conteudoProgramatico\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.\",\r\n    \"dataProgramada\": \"24/07/2001\",\r\n    \"tecnicaMetodologica\": \"Presencial\",\r\n    \"turmaId\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -427,13 +427,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/turma/:id/class-planning-report",
+									"raw": "localhost:3000/turmas/:id/class-planning-report",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
-										"turma",
+										"turmas",
 										":id",
 										"class-planning-report"
 									],
@@ -441,6 +441,32 @@
 										{
 											"key": "id",
 											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-turmas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/turmas/:id/aulas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"turmas",
+										":id",
+										"aulas"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
 										}
 									]
 								}
